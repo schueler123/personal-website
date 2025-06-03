@@ -1,8 +1,8 @@
 :root {
   --bg: #ffffff;
   --light: #cddcc2;
-  --medium: #a6bc9b;
-  --dark: #5d734f;
+  --medium: #BDD3B6;
+  --dark: #80A577;
   --accent: #000000;
   --radius-large: 30px;
   --radius-small: 20px;
@@ -22,6 +22,36 @@ body {
   line-height: 1.6;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul {
+  list-style: disc inside;
+  padding-left: 1rem;
+  margin-top: 1rem;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
 header {
   position: relative;
   background: var(--medium);
@@ -35,22 +65,12 @@ header {
   margin-bottom: 1rem;
 }
 
-.profile-pic {
-  width: 130px;
-  height: 130px;
-  background-color: #ccc;
-  border-radius: 50%;
-  background-image: url("ubermich.png");
-  background-size: cover;
-  background-position: center;
-  flex-shrink: 0;
-}
-
 .profile-pic-img {
   width: 130px;
   height: 130px;
   border-radius: 50%;
   object-fit: cover;
+  border: 2px solid white;
 }
 
 .logo-title h1 {
@@ -76,12 +96,21 @@ header {
 nav {
   position: absolute;
   bottom: 0;
-  right: 0rem;
-  background: var(--dark);
+  right: 0;
   display: flex;
   gap: 2rem;
   padding: 0.5rem 1rem;
   font-size: 1rem;
+  z-index: 1;
+}
+
+nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--dark);
+  opacity: 0.6;
+  z-index: -1;
 }
 
 nav a {
@@ -107,12 +136,6 @@ main {
   margin: 0 auto;
 }
 
-h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-
 .round-box {
   background: var(--light);
   padding: 2rem;
@@ -121,7 +144,21 @@ h2 {
   width: 50%;
   margin-left: auto;
   margin-right: auto;
+}
 
+.round-box input,
+.round-box textarea {
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  border-radius: var(--radius-small);
+  background-color: var(--dark);
+  color: white;
+  border: none;
+}
+
+.round-box textarea {
+  min-height: 150px;
+  resize: vertical;
 }
 
 .flex {
@@ -132,22 +169,36 @@ h2 {
   align-items: flex-start;
 }
 
-.round-box input {
-  padding: 0.6rem 1rem;
-  font-size: 0.95rem;
-  border-radius: var(--radius-small);
+.card-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 2rem;
 }
 
-.round-box textarea {
-  padding: 0.6rem 1rem;
-  font-size: 0.95rem;
+.card {
+  background: var(--light);
   border-radius: var(--radius-small);
-  min-height: 150px;
-  /* Nur das Textfeld ist höher */
-  resize: vertical;
+  padding: 1.2rem;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
-button {
+.card strong,
+.code-block strong,
+.project-textbox strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.code-block strong {
+  font-size: 1.8rem;
+  text-align: left;
+}
+
+button,
+.kontakt-button-wrapper button {
   background: #799d6e;
   border: none;
   border-radius: 30px;
@@ -156,6 +207,12 @@ button {
   color: white;
   cursor: pointer;
   margin-top: 1rem;
+}
+
+.kontakt-button-wrapper button {
+  padding: 0.6rem 1.8rem;
+  color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 footer {
@@ -173,52 +230,6 @@ footer img {
   height: 40px;
 }
 
-ul {
-  list-style: disc inside;
-  padding-left: 1rem;
-  margin-top: 1rem;
-}
-
-.card-grid {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(2, 1fr);
-  margin-top: 2rem;
-}
-
-
-.card {
-  background: var(--light);
-  border-radius: var(--radius-small);
-  padding: 1.2rem;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.card strong {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-}
-
-.flex img {
-  max-width: 100%;
-  border-radius: 20px;
-  background: lightgray;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
 .footer-left {
   max-width: 70%;
 }
@@ -230,7 +241,6 @@ form {
 .kontakt-box {
   position: relative;
   margin-bottom: 4rem;
-  /* Platz für Button darunter */
 }
 
 .kontakt-button-wrapper {
@@ -241,23 +251,61 @@ form {
   padding-right: 3rem;
 }
 
-.kontakt-button-wrapper button {
-  background: #799d6e;
-  border: none;
-  border-radius: 30px;
-  padding: 0.6rem 1.8rem;
-  font-size: 1rem;
-  color: black;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+.kontakt-adresse {
+  margin: 2rem auto;
+  text-align: center;
+  width: fit-content;
+  padding: 2rem;
+  border-radius: var(--radius-large);
+  background: var(--light);
 }
 
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
 
-.project-image img {
-  max-width: 100%;
-  border-radius: var(--radius-small);
+.project-row,
+.project-pair {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.project-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 320px;
+  gap: 1rem;
+}
+
+.project-image,
+.project-img,
+.projektfoto-img,
+.javafx-img {
+  width: 300px;
+  border-radius: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.project-textbox {
+  background: var(--light);
+  border-radius: var(--radius-large);
+  padding: 1.2rem;
+  text-align: left;
+  font-size: 1rem;
+  line-height: 1.5;
+  flex: 1;
+  min-width: 250px;
   width: 100%;
-  max-width: 400px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .project-description {
@@ -278,81 +326,12 @@ form {
   text-align: center;
 }
 
-.code-block img {
-  max-width: 100%;
+.code-block img,
+.project-image img,
+.flex img {
   border-radius: var(--radius-small);
   background: lightgray;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.project-pair {
-  flex-wrap: wrap;
-  gap: 3rem;
-  justify-content: center;
-  align-items: flex-start;
-  margin-bottom: 4rem;
-}
-
-.project-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 320px;
-  gap: 1rem;
-}
-
-.project-image {
-  border-radius: 30px;
-  width: 100%;
-  height: auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.project-textbox {
-  background: var(--light);
-  border-radius: var(--radius-large);
-  padding: 1.2rem;
-  text-align: left;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.project-textbox strong {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-}
-
-.project-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
-}
-
-.project-img {
-  width: 300px;
-  border-radius: 30px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
-}
-
-.project-textbox {
-  background: var(--light);
-  border-radius: var(--radius-large);
-  padding: 1.2rem;
-  text-align: left;
-  font-size: 1rem;
-  line-height: 1.5;
-  flex: 1;
-  min-width: 250px;
-}
-
-.project-textbox strong {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-weight: bold;
 }
 
 .intro-section {
@@ -371,38 +350,6 @@ form {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.projektfoto-img,
-.javafx-img {
-  width: 300px;
-  border-radius: 30px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
-}
-
-.project-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 2rem;
-  margin-bottom: 3rem;
-  flex-wrap: wrap;
-}
-
-.project-textbox {
-  background: var(--light);
-  border-radius: var(--radius-large);
-  padding: 1.2rem;
-  text-align: left;
-  font-size: 1rem;
-  line-height: 1.5;
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-
-
-/* Media Queries */
-
 @media (max-width: 1024px) {
   nav {
     flex-wrap: wrap;
@@ -417,17 +364,9 @@ form {
     text-align: center;
   }
 
-  .logo-title h1 {
-    font-size: 1.8rem;
-  }
-
-  .logo-text {
-    font-size: 4rem;
-  }
-
-  .logo-sub {
-    font-size: 1.1rem;
-  }
+  .logo-title h1 { font-size: 1.8rem; }
+  .logo-text { font-size: 4rem; }
+  .logo-sub { font-size: 1.1rem; }
 
   footer {
     flex-direction: column;
@@ -436,8 +375,7 @@ form {
     text-align: center;
   }
 
-  .footer-left,
-  .footer-right {
+  .footer-left, .footer-right {
     text-align: center;
     max-width: 100%;
   }
